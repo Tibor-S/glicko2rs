@@ -149,8 +149,9 @@ impl Glicko2 {
                 .sum::<f64>();
     }
 
-    // Adjust accuracy to be as low as needed (Good starting point would be 0.000_001).
-    // Adjust constraint to regulate change in volatility (0.2 - 1.2 is a pretty good range)
+    /// * Adjust accuracy to be as low as needed (Good starting point would be 0.000_001).
+    /// * Adjust constraint to regulate change in volatility (0.2 - 1.2 is a pretty good range)
+    /// * Shift and scale adjusts the actual numbers to the desired format via the functions ´scale´ * rating + ´shift´ and ´scale´ * deviation
     pub fn evaluate_rating_period(
         &mut self,
         ops: &[&Self],
@@ -209,6 +210,7 @@ impl Glicko2 {
 
 #[cfg(test)]
 mod tests {
+    #![allow(unused)]
     use crate::Glicko2;
 
     fn init_log() {
